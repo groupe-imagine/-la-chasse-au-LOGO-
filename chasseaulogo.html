@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chasse au logo</title>
+    <link rel="stylesheet" href="chasseaulogo.css">
+</head>
+<body>
+    <div id="logo">Lyreco</div>
+    <script>
+        var logo;
+        function getRandomPosition()
+        {
+            var logo = document.getElementById('logo');
+            var x = Math.floor(Math.random() * (window.innerWidth -
+            logo.offsetWidth));
+            var y = Math.floor(Math.random() * (window.innerHeight -
+            logo.offsetHeight));
+
+            return [x, y];
+        }
+
+        function disappear_mvt()
+        {
+            var logo = document.getElementById('logo');
+            var position = getRandomPosition();
+
+            logo.style.left = position[0] + 'px';
+            logo.style.top = position[1] + 'px';
+        }
+
+        function change_logo()
+        {
+            var logo = document.getElementById('logo');
+            var colors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
+            var fonts = ['Arial', 'Verdana', 'Helvetica', 'Times New Roman', 'Courier New', 'Georgia'];
+            var randomColor = colors[Math.floor(Math.random() * colors.length)];
+            var randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+
+            logo.style.color = randomColor;
+            logo.style.fontFamily = randomFont;
+        }
+
+        function effet_360()
+        {
+            var logo = document.getElementById('logo');
+            logo.style.transform = 'rotate(360deg)';
+            logo.style.transition = 'transform 1s ease-in-out';
+            setTimeout(function() {
+                logo.style.transform = 'rotate(0deg)';
+            }, 1000);
+        }
+        disappear_mvt();
+        setInterval(disappear_mvt, 2000);
+        window.addEventListener('load', change_logo);
+        logo = document.getElementById('logo');
+        logo.addEventListener('click', effet_360);
+    </script>
+</body>
+</html>
